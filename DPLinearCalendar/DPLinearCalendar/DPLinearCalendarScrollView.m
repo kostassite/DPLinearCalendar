@@ -51,7 +51,7 @@
 
 @interface DPLinearCalendarScrollView () {
     NSMutableArray *visibleCells;
-    UIView         *labelContainerView;
+    UIView         *cellContainerView;
 }
 
 - (void)tileCellsFromMinX:(CGFloat)minimumVisibleX toMaxX:(CGFloat)maximumVisibleX;
@@ -68,11 +68,11 @@
         
         visibleCells = [[NSMutableArray alloc] init];
         
-        labelContainerView = [[UIView alloc] init];
-        labelContainerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height/2);
-        [self addSubview:labelContainerView];
+        cellContainerView = [[UIView alloc] init];
+        cellContainerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height/2);
+        [self addSubview:cellContainerView];
 
-        [labelContainerView setUserInteractionEnabled:NO];
+        [cellContainerView setUserInteractionEnabled:NO];
         
         // hide horizontal scroll indicator so our recentering trick is not revealed
         [self setShowsHorizontalScrollIndicator:NO];
@@ -96,9 +96,9 @@
         // move content by the same amount so it appears to stay still
         
         for (DPLinearCalendarCell *cell in visibleCells) {
-            CGPoint center = [labelContainerView convertPoint:cell.center fromView:self];
+            CGPoint center = [cellContainerView convertPoint:cell.center fromView:self];
             center.x = (centerOffsetX - currentOffset.x);
-            cell.center = [self convertPoint:center fromView:labelContainerView];
+            cell.center = [self convertPoint:center fromView:cellContainerView];
         }
     }
 }
@@ -109,7 +109,7 @@
 
     [self recenterIfNecessary];
     // tile content in visible bounds
-    CGRect visibleBounds = [self convertRect:[self bounds] toView:labelContainerView];
+    CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
     CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
     CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
 
@@ -134,7 +134,7 @@
     [dateLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
     [cell addSubview:dateLabel];
     
-    [labelContainerView addSubview:cell];
+    [cellContainerView addSubview:cell];
     return cell;
 }
 
@@ -146,7 +146,7 @@
     
     CGRect frame = [cell frame];
     frame.origin.x = rightEdge;
-    frame.origin.y = [labelContainerView bounds].size.height - frame.size.height;
+    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
     [cell setFrame:frame];
         
     return CGRectGetMaxX(frame);
@@ -159,7 +159,7 @@
     
     CGRect frame = [cell frame];
     frame.origin.x = leftEdge - frame.size.width;
-    frame.origin.y = [labelContainerView bounds].size.height - frame.size.height;
+    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
     [cell setFrame:frame];
     
     return CGRectGetMinX(frame);
