@@ -16,9 +16,12 @@
 		2EACAAA416159217009D84B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA316159217009D84B3 /* Default.png */; };
 		2EACAAA616159217009D84B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA516159217009D84B3 /* Default@2x.png */; };
 		2EACAAA816159217009D84B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA716159217009D84B3 /* Default-568h@2x.png */; };
-		2EACAAB1161592F5009D84B3 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */; };
 		2EACAAB41615936C009D84B3 /* DPLinearCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAAB31615936C009D84B3 /* DPLinearCalendarCell.m */; };
 		2EACAAB616159391009D84B3 /* DPLinearCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAB516159391009D84B3 /* DPLinearCalendarCell.xib */; };
+		2EACAAC116159B54009D84B3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAABF16159B53009D84B3 /* RootViewController.m */; };
+		2EACAAC216159B54009D84B3 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAC016159B54009D84B3 /* RootViewController.xib */; };
+		2EACAAC816159C60009D84B3 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAAC716159C60009D84B3 /* InfiniteScrollView.m */; };
+		2EACAACB16159EDD009D84B3 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAACA16159EDD009D84B3 /* NSDate+Helpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,11 +38,16 @@
 		2EACAAA316159217009D84B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2EACAAA516159217009D84B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2EACAAA716159217009D84B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		2EACAAAF161592F5009D84B3 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteScrollView.h; path = ../../../../Downloads/StreetScroller/StreetScroller/InfiniteScrollView.h; sourceTree = "<group>"; };
-		2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteScrollView.m; path = ../../../../Downloads/StreetScroller/StreetScroller/InfiniteScrollView.m; sourceTree = "<group>"; };
 		2EACAAB21615936C009D84B3 /* DPLinearCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinearCalendarCell.h; sourceTree = "<group>"; };
 		2EACAAB31615936C009D84B3 /* DPLinearCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinearCalendarCell.m; sourceTree = "<group>"; };
 		2EACAAB516159391009D84B3 /* DPLinearCalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DPLinearCalendarCell.xib; sourceTree = "<group>"; };
+		2EACAABE16159B53009D84B3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		2EACAABF16159B53009D84B3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		2EACAAC016159B54009D84B3 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		2EACAAC616159C60009D84B3 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollView.h; sourceTree = "<group>"; };
+		2EACAAC716159C60009D84B3 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollView.m; sourceTree = "<group>"; };
+		2EACAAC916159EDD009D84B3 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
+		2EACAACA16159EDD009D84B3 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,9 @@
 			children = (
 				2EACAAA016159217009D84B3 /* AppDelegate.h */,
 				2EACAAA116159217009D84B3 /* AppDelegate.m */,
+				2EACAABE16159B53009D84B3 /* RootViewController.h */,
+				2EACAABF16159B53009D84B3 /* RootViewController.m */,
+				2EACAAC016159B54009D84B3 /* RootViewController.xib */,
 				2EACAAAE161592C1009D84B3 /* DPLinearCalendar */,
 				2EACAA9816159217009D84B3 /* Supporting Files */,
 			);
@@ -111,8 +122,10 @@
 		2EACAAAE161592C1009D84B3 /* DPLinearCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				2EACAAAF161592F5009D84B3 /* InfiniteScrollView.h */,
-				2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */,
+				2EACAAC916159EDD009D84B3 /* NSDate+Helpers.h */,
+				2EACAACA16159EDD009D84B3 /* NSDate+Helpers.m */,
+				2EACAAC616159C60009D84B3 /* InfiniteScrollView.h */,
+				2EACAAC716159C60009D84B3 /* InfiniteScrollView.m */,
 				2EACAAB21615936C009D84B3 /* DPLinearCalendarCell.h */,
 				2EACAAB31615936C009D84B3 /* DPLinearCalendarCell.m */,
 				2EACAAB516159391009D84B3 /* DPLinearCalendarCell.xib */,
@@ -176,6 +189,7 @@
 				2EACAAA616159217009D84B3 /* Default@2x.png in Resources */,
 				2EACAAA816159217009D84B3 /* Default-568h@2x.png in Resources */,
 				2EACAAB616159391009D84B3 /* DPLinearCalendarCell.xib in Resources */,
+				2EACAAC216159B54009D84B3 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,8 +202,10 @@
 			files = (
 				2EACAA9E16159217009D84B3 /* main.m in Sources */,
 				2EACAAA216159217009D84B3 /* AppDelegate.m in Sources */,
-				2EACAAB1161592F5009D84B3 /* InfiniteScrollView.m in Sources */,
 				2EACAAB41615936C009D84B3 /* DPLinearCalendarCell.m in Sources */,
+				2EACAAC116159B54009D84B3 /* RootViewController.m in Sources */,
+				2EACAAC816159C60009D84B3 /* InfiniteScrollView.m in Sources */,
+				2EACAACB16159EDD009D84B3 /* NSDate+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

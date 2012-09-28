@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DPLinearCalendarCell : UIView
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
++ (DPLinearCalendarCell*)cell;
+
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonatomic,strong) NSDate *cellDate;
 @end

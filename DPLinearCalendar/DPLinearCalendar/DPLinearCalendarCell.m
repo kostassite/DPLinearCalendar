@@ -9,14 +9,16 @@
 #import "DPLinearCalendarCell.h"
 
 @implementation DPLinearCalendarCell
-
-- (id)initWithFrame:(CGRect)frame
+@synthesize cellDate;
++ (DPLinearCalendarCell*)cell
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    NSArray *nibArray= [[NSBundle mainBundle] loadNibNamed:@"DPLinearCalendarCell" owner:self options:nil];
+    for (id view in nibArray) {
+        if ([view isKindOfClass:[UIView class]]) {
+            return view;
+        }
     }
-    return self;
+    return nil;
 }
 
 /*
