@@ -16,6 +16,7 @@
 		2EACAAA416159217009D84B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA316159217009D84B3 /* Default.png */; };
 		2EACAAA616159217009D84B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA516159217009D84B3 /* Default@2x.png */; };
 		2EACAAA816159217009D84B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EACAAA716159217009D84B3 /* Default-568h@2x.png */; };
+		2EACAAB1161592F5009D84B3 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		2EACAAA316159217009D84B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2EACAAA516159217009D84B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2EACAAA716159217009D84B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2EACAAAF161592F5009D84B3 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteScrollView.h; path = ../../../../Downloads/StreetScroller/StreetScroller/InfiniteScrollView.h; sourceTree = "<group>"; };
+		2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteScrollView.m; path = ../../../../Downloads/StreetScroller/StreetScroller/InfiniteScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,7 @@
 			children = (
 				2EACAAA016159217009D84B3 /* AppDelegate.h */,
 				2EACAAA116159217009D84B3 /* AppDelegate.m */,
+				2EACAAAE161592C1009D84B3 /* DPLinearCalendar */,
 				2EACAA9816159217009D84B3 /* Supporting Files */,
 			);
 			path = DPLinearCalendar;
@@ -97,6 +101,15 @@
 				2EACAAA716159217009D84B3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2EACAAAE161592C1009D84B3 /* DPLinearCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				2EACAAAF161592F5009D84B3 /* InfiniteScrollView.h */,
+				2EACAAB0161592F5009D84B3 /* InfiniteScrollView.m */,
+			);
+			path = DPLinearCalendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +179,7 @@
 			files = (
 				2EACAA9E16159217009D84B3 /* main.m in Sources */,
 				2EACAAA216159217009D84B3 /* AppDelegate.m in Sources */,
+				2EACAAB1161592F5009D84B3 /* InfiniteScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
