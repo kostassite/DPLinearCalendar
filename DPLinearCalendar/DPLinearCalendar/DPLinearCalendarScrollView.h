@@ -47,6 +47,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InfiniteScrollView : UIScrollView <UIScrollViewDelegate>
+@interface DPLinearCalendarScrollView : UIScrollView <UIScrollViewDelegate>
 
 @end

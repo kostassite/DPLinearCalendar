@@ -45,21 +45,21 @@
  
  */
 
-#import "InfiniteScrollView.h"
+#import "DPLinearCalendarScrollView.h"
 #import "DPLinearCalendarCell.h"
 #import "NSDate+Helpers.h"
 
-@interface InfiniteScrollView () {
+@interface DPLinearCalendarScrollView () {
     NSMutableArray *visibleCells;
     UIView         *labelContainerView;
 }
 
-- (void)tileCellFromMinX:(CGFloat)minimumVisibleX toMaxX:(CGFloat)maximumVisibleX;
+- (void)tileCellsFromMinX:(CGFloat)minimumVisibleX toMaxX:(CGFloat)maximumVisibleX;
 
 @end
 
 
-@implementation InfiniteScrollView
+@implementation DPLinearCalendarScrollView
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
