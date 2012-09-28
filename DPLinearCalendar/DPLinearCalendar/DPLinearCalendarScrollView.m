@@ -60,6 +60,7 @@
 
 
 @implementation DPLinearCalendarScrollView
+@synthesize datasource;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
@@ -120,6 +121,10 @@
 #pragma mark Cell Create
 
 - (DPLinearCalendarCell*)insertCellForDate:(NSDate*)date{
+    if (datasource && [datasource respondsToSelector:@selector(linearScrollViewCellForDate:)]) {
+        return [datasource linearScrollViewCellForDate:date];
+    }
+    
     DPLinearCalendarCell *cell=[DPLinearCalendarCell cell];
     cell.cellDate=date;
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -130,9 +135,6 @@
     return cell;
 }
 
-
-#pragma mark -
-#pragma mark Label Tiling
 
 - (CGFloat)placeNewCellOnRight:(CGFloat)rightEdge ofDate:(NSDate*)date{
     DPLinearCalendarCell *cell=[self insertCellForDate:date];

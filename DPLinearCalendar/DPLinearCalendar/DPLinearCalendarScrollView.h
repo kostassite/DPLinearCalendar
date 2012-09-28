@@ -47,6 +47,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class DPLinearCalendarScrollView;
+@class DPLinearCalendarCell;
+
+@protocol DPLinearCalendarScrollViewDataSource <NSObject>
+
+@optional
+-(DPLinearCalendarCell*) linearScrollViewCellForDate:(NSDate*)date;
+
+@end
+
+
 @interface DPLinearCalendarScrollView : UIScrollView <UIScrollViewDelegate>
 
+@property (nonatomic,weak) id<DPLinearCalendarScrollViewDataSource> datasource;
 @end
