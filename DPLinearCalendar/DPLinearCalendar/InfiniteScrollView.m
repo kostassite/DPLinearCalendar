@@ -105,13 +105,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+
     [self recenterIfNecessary];
- 
+    NSLog(@"Layout Subviews");
     // tile content in visible bounds
     CGRect visibleBounds = [self convertRect:[self bounds] toView:labelContainerView];
     CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
     CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
-    
+
     [self tileCellsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
 }
 
@@ -136,7 +137,7 @@
 #pragma mark Label Tiling
 
 - (CGFloat)placeNewCellOnRight:(CGFloat)rightEdge ofDate:(NSDate*)date{
-    DPLinearCalendarCell *cell=[self insertCellForDate:[date dateByAddingDays:1]];
+    DPLinearCalendarCell *cell=[self insertCellForDate:date];
     
     [visibleCells addObject:cell]; // add rightmost label at the end of the array
     
@@ -149,9 +150,9 @@
 }
 
 - (CGFloat)placeNewCellOnLeft:(CGFloat)leftEdge ofDate:(NSDate*)date{
-    DPLinearCalendarCell *cell=[self insertCellForDate:[date dateByAddingDays:-1]];
+    DPLinearCalendarCell *cell=[self insertCellForDate:date];
     
-    [visibleCells addObject:cell]; // add leftmost label at the beginning of the array
+    [visibleCells insertObject:cell atIndex:0]; // add leftmost label at the beginning of the array
     
     CGRect frame = [cell frame];
     frame.origin.x = leftEdge - frame.size.width;
@@ -172,14 +173,17 @@
     DPLinearCalendarCell *lastCell = [visibleCells lastObject];
     CGFloat rightEdge = CGRectGetMaxX([lastCell frame]);
     while (rightEdge < maximumVisibleX) {
-        rightEdge = [self placeNewCellOnRight:rightEdge ofDate:lastCell.cellDate];
+        rightEdge = [self placeNewCellOnRight:rightEdge ofDate:[lastCell.cellDate dateByAddingDays:1]];
+        lastCell = [visibleCells lastObject];
     }
     
     // add labels that are missing on left side
     DPLinearCalendarCell *firstCell = [visibleCells objectAtIndex:0];
     CGFloat leftEdge = CGRectGetMinX([firstCell frame]);
     while (leftEdge > minimumVisibleX) {
-        leftEdge = [self placeNewCellOnLeft:leftEdge ofDate:firstCell.cellDate];
+        NSLog(@"%@   %@",[firstCell.cellDate dateByAddingDays:-1],firstCell.cellDate);
+        leftEdge = [self placeNewCellOnLeft:leftEdge ofDate:[firstCell.cellDate dateByAddingDays:-1]];
+        firstCell = [visibleCells objectAtIndex:0];
     }
     
     // remove labels that have fallen off right edge
