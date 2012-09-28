@@ -10,15 +10,14 @@
 
 @implementation DPLinearCalendarCell
 @synthesize cellDate;
-+ (DPLinearCalendarCell*)cell
+- (DPLinearCalendarCell*)initWithFrame:(CGRect)frame
 {
-    NSArray *nibArray= [[NSBundle mainBundle] loadNibNamed:@"DPLinearCalendarCell" owner:self options:nil];
-    for (id view in nibArray) {
-        if ([view isKindOfClass:[UIView class]]) {
-            return view;
-        }
+    self=[super initWithFrame:frame];
+
+    if (self) {
+        
     }
-    return nil;
+    return self;
 }
 
 /*

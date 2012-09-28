@@ -125,12 +125,15 @@
         return [datasource linearScrollViewCellForDate:date];
     }
     
-    DPLinearCalendarCell *cell=[DPLinearCalendarCell cell];
+    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
     cell.cellDate=date;
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components=[calendar components:NSDayCalendarUnit fromDate:date];
     
-    [cell.dateLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
+    UILabel *dateLabel=[[UILabel alloc]initWithFrame:CGRectMake(2, 2, 40, 40)];
+    [dateLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
+    [cell addSubview:dateLabel];
+    
     [labelContainerView addSubview:cell];
     return cell;
 }

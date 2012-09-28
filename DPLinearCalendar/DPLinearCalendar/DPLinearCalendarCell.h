@@ -10,8 +10,5 @@
 
 @interface DPLinearCalendarCell : UIView
 
-+ (DPLinearCalendarCell*)cell;
-
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (nonatomic,strong) NSDate *cellDate;
 @end
