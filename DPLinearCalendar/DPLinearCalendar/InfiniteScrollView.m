@@ -107,7 +107,6 @@
     
 
     [self recenterIfNecessary];
-    NSLog(@"Layout Subviews");
     // tile content in visible bounds
     CGRect visibleBounds = [self convertRect:[self bounds] toView:labelContainerView];
     CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
@@ -126,7 +125,6 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components=[calendar components:NSDayCalendarUnit fromDate:date];
     
-    NSLog(@"Create date %d",[components day]);
     [cell.dateLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
     [labelContainerView addSubview:cell];
     return cell;
@@ -181,7 +179,6 @@
     DPLinearCalendarCell *firstCell = [visibleCells objectAtIndex:0];
     CGFloat leftEdge = CGRectGetMinX([firstCell frame]);
     while (leftEdge > minimumVisibleX) {
-        NSLog(@"%@   %@",[firstCell.cellDate dateByAddingDays:-1],firstCell.cellDate);
         leftEdge = [self placeNewCellOnLeft:leftEdge ofDate:[firstCell.cellDate dateByAddingDays:-1]];
         firstCell = [visibleCells objectAtIndex:0];
     }
