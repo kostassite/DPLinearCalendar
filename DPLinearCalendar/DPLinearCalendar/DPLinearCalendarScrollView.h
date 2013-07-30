@@ -61,4 +61,7 @@
 @interface DPLinearCalendarScrollView : UIScrollView <UIScrollViewDelegate>
 
 @property (nonatomic,weak) id<DPLinearCalendarScrollViewDataSource> datasource;
+
+@property (nonatomic) BOOL wrapEnabled;
+
 @end

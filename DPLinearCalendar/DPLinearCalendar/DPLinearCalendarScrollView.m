@@ -49,7 +49,7 @@
 #import "DPLinearCalendarCell.h"
 #import "NSDate+Helpers.h"
 
-@interface DPLinearCalendarScrollView () {
+@interface DPLinearCalendarScrollView () <UIScrollViewDelegate>{
     NSMutableArray *visibleCells;
     UIView         *cellContainerView;
 }
@@ -65,6 +65,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
         self.contentSize = CGSizeMake(5000, self.frame.size.height);
+        self.delegate = self;
+        [self setupDefaultValues];
         visibleCells = [[NSMutableArray alloc] init];
         
         cellContainerView = [[UIView alloc] init];
@@ -77,6 +79,10 @@
         [self setShowsHorizontalScrollIndicator:NO];
     }
     return self;
+}
+
+-(void)setupDefaultValues{
+    self.wrapEnabled = YES;
 }
 
 #pragma mark -
@@ -198,4 +204,31 @@
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate) {
+        [self centerDateIfWrapEnabled];
+    }
+
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self centerDateIfWrapEnabled];
+}
+
+-(void)centerDateIfWrapEnabled{
+    if (!self.wrapEnabled) {
+        return;
+    }
+    CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
+    CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
+
+    
+    DPLinearCalendarCell *cell = [visibleCells objectAtIndex:0];
+    if (cell.frame.origin.x + cell.frame.size.width/2 < minimumVisibleX) {
+        cell = [visibleCells objectAtIndex:1];
+    }
+    [self setContentOffset:CGPointMake(cell.frame.origin.x, 0) animated:YES];
+}
 @end
