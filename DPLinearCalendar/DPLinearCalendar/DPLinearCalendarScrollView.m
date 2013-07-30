@@ -61,6 +61,7 @@
 
 @implementation DPLinearCalendarScrollView
 @synthesize linearDatasource;
+@synthesize selectedDate = _selectedDate;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
@@ -169,6 +170,7 @@
     // to kick off the tiling we need to make sure there's at least one label
     if ([visibleCells count] == 0) {
         [self placeNewCellOnRight:minimumVisibleX ofDate:[[NSDate date] dateByAddingDays:-1]];
+        self.selectedDate = [NSDate date];
     }
     
     // add cell that are missing on right side
@@ -233,8 +235,35 @@
     [self setContentOffset:CGPointMake(cell.frame.origin.x, 0) animated:YES];
     
     DPLinearCalendarCell *selectedCell = [visibleCells objectAtIndex:currentIndexCell+2];
+    _selectedDate = [selectedCell cellDate];
     if (self.linearDelegate && [self.linearDelegate respondsToSelector:@selector(linearCalendarSelectedDate:)]) {
-        [self.linearDelegate linearCalendarSelectedDate:[selectedCell cellDate]];
+        [self.linearDelegate linearCalendarSelectedDate:_selectedDate];
     }
+
+}
+
+#pragma mark - Helpers
+
+-(void)setSelectedDate:(NSDate *)selectedDate{
+    _selectedDate = selectedDate;
+    
+    CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
+    CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
+    CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
+    
+    for (DPLinearCalendarCell *cell in visibleCells) {
+        [cell removeFromSuperview];
+    }
+    [visibleCells removeAllObjects];
+    [self placeNewCellOnRight:minimumVisibleX ofDate:[selectedDate dateByAddingDays:-1]];
+    [self tileCellsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+    
+    if (self.linearDelegate && [self.linearDelegate respondsToSelector:@selector(linearCalendarSelectedDate:)]) {
+        [self.linearDelegate linearCalendarSelectedDate:selectedDate];
+    }
+}
+
+-(NSDate*)selectedDate{
+    return _selectedDate;
 }
 @end

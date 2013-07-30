@@ -66,6 +66,8 @@
 
 @interface DPLinearCalendarScrollView : UIScrollView <UIScrollViewDelegate>
 
+@property (nonatomic,strong) NSDate* selectedDate;
+
 @property (nonatomic,weak) id<DPLinearCalendarScrollViewDataSource> linearDatasource;
 @property (nonatomic,weak) id<DPLinearCalendarScrollViewDelegate> linearDelegate;
 
