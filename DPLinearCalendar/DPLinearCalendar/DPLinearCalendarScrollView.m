@@ -65,7 +65,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
         self.contentSize = CGSizeMake(5000, self.frame.size.height);
-        
         visibleCells = [[NSMutableArray alloc] init];
         
         cellContainerView = [[UIView alloc] init];
@@ -125,14 +124,8 @@
         return [datasource linearScrollViewCellForDate:date];
     }
     
-    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, 65, self.frame.size.height)];
     cell.cellDate=date;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components=[calendar components:NSDayCalendarUnit fromDate:date];
-    
-    UILabel *dateLabel=[[UILabel alloc]initWithFrame:CGRectMake(2, 2, 40, 40)];
-    [dateLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
-    [cell addSubview:dateLabel];
     
     [cellContainerView addSubview:cell];
     return cell;
@@ -146,7 +139,7 @@
     
     CGRect frame = [cell frame];
     frame.origin.x = rightEdge;
-    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
+//    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
     [cell setFrame:frame];
         
     return CGRectGetMaxX(frame);
@@ -159,7 +152,7 @@
     
     CGRect frame = [cell frame];
     frame.origin.x = leftEdge - frame.size.width;
-    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
+//    frame.origin.y = [cellContainerView bounds].size.height - frame.size.height;
     [cell setFrame:frame];
     
     return CGRectGetMinX(frame);
