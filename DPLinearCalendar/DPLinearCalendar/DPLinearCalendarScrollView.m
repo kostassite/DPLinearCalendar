@@ -60,7 +60,7 @@
 
 
 @implementation DPLinearCalendarScrollView
-@synthesize datasource;
+@synthesize linearDatasource;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
@@ -126,8 +126,8 @@
 #pragma mark Cell Create
 
 - (DPLinearCalendarCell*)insertCellForDate:(NSDate*)date{
-    if (datasource && [datasource respondsToSelector:@selector(linearScrollViewCellForDate:)]) {
-        return [datasource linearScrollViewCellForDate:date];
+    if (linearDatasource && [linearDatasource respondsToSelector:@selector(linearScrollViewCellForDate:)]) {
+        return [linearDatasource linearScrollViewCellForDate:date];
     }
     
     DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, 65, self.frame.size.height)];
@@ -224,11 +224,17 @@
     CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
     CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
 
-    
+    NSInteger currentIndexCell = 0;
     DPLinearCalendarCell *cell = [visibleCells objectAtIndex:0];
     if (cell.frame.origin.x + cell.frame.size.width/2 < minimumVisibleX) {
         cell = [visibleCells objectAtIndex:1];
+        currentIndexCell = 1;
     }
     [self setContentOffset:CGPointMake(cell.frame.origin.x, 0) animated:YES];
+    
+    DPLinearCalendarCell *selectedCell = [visibleCells objectAtIndex:currentIndexCell+2];
+    if (self.linearDelegate && [self.linearDelegate respondsToSelector:@selector(linearCalendarSelectedDate:)]) {
+        [self.linearDelegate linearCalendarSelectedDate:[selectedCell cellDate]];
+    }
 }
 @end
