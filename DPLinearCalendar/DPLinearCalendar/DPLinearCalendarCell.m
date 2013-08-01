@@ -29,7 +29,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"E"];
     
-    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 2, self.frame.size.width, 15)];
+    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 2, self.frame.size.width-5, 15)];
     [dateLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:8]];
     [dateLabel setTextAlignment:NSTextAlignmentCenter];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
@@ -37,7 +37,7 @@
     [dateLabel setText:[NSString stringWithFormat:@"%@",[[dateFormatter stringFromDate:cellDate] uppercaseString]]];
     [self addSubview:dateLabel];
 
-    UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 14, self.frame.size.width, 30)];
+    UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 14, self.frame.size.width-5, 30)];
     [numLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:23]];
     [numLabel setTextAlignment:NSTextAlignmentCenter];
     [numLabel setBackgroundColor:[UIColor clearColor]];
