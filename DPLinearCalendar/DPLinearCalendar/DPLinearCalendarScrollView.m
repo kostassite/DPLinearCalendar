@@ -127,12 +127,14 @@
 #pragma mark Cell Create
 
 - (DPLinearCalendarCell*)insertCellForDate:(NSDate*)date{
+    DPLinearCalendarCell *cell;
     if (linearDatasource && [linearDatasource respondsToSelector:@selector(linearScrollViewCellForDate:)]) {
-        return [linearDatasource linearScrollViewCellForDate:date];
+        cell = [linearDatasource linearScrollViewCellForDate:date];
     }
-    
-    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, [DPLinearCalendarCell cellWidth], self.frame.size.height)];
-    cell.cellDate=date;
+    if (!cell) {
+        cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, [DPLinearCalendarCell cellWidth], self.frame.size.height)];
+        cell.cellDate=date;
+    }
     
     [cellContainerView addSubview:cell];
     return cell;
