@@ -131,7 +131,7 @@
         return [linearDatasource linearScrollViewCellForDate:date];
     }
     
-    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, 65, self.frame.size.height)];
+    DPLinearCalendarCell *cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, [DPLinearCalendarCell cellWidth], self.frame.size.height)];
     cell.cellDate=date;
     
     [cellContainerView addSubview:cell];

@@ -47,4 +47,8 @@
     [self addSubview:numLabel];
 }
 
++(CGFloat)cellWidth{
+    return 65;
+}
+
 @end

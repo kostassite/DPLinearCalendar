@@ -11,4 +11,7 @@
 @interface DPLinearCalendarCell : UIView
 
 @property (nonatomic,strong) NSDate *cellDate;
+
++(CGFloat)cellWidth;
+
 @end
