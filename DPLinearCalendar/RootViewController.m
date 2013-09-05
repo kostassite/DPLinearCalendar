@@ -7,8 +7,12 @@
 //
 
 #import "RootViewController.h"
+#import "DPLinearCalendarScrollView.h"
 
-@interface RootViewController ()
+@interface RootViewController (){
+    
+    __weak IBOutlet DPLinearCalendarScrollView *linearCalendar;
+}
 
 @end
 
@@ -26,9 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [linearCalendar setWrapEnabled:NO];
+
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [linearCalendar setSelectedDate:[NSDate date]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

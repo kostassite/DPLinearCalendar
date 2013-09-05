@@ -52,7 +52,7 @@
 
 @protocol DPLinearCalendarScrollViewDelegate <NSObject>
 
--(void)linearCalendarSelectedDate:(NSDate*)date; //works only when wrapEnabled = YES
+-(void)linearCalendarSelectedDate:(NSDate*)date; 
 
 @end
 

@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class DPLinearCalendarScrollView;
+
 @interface DPLinearCalendarCell : UIView
+
+@property (nonatomic,weak) DPLinearCalendarScrollView *linearCalendar;
 
 @property (nonatomic,strong) NSDate *cellDate;
 
 +(CGFloat)cellWidth;
+
+
+-(void)selectCell;
+-(void)unselectCell;
 
 @end

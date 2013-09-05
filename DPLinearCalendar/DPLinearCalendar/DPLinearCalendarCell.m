@@ -7,6 +7,14 @@
 //
 
 #import "DPLinearCalendarCell.h"
+#import "DPLinearCalendarScrollView.h"
+
+@interface DPLinearCalendarCell () {
+    UIView *selectedBgView;
+    UIButton *btn;
+}
+
+@end
 
 @implementation DPLinearCalendarCell
 @synthesize cellDate = _cellDate;
@@ -45,10 +53,32 @@
     [numLabel setText:[NSString stringWithFormat:@"%d",[components day]]];
     
     [self addSubview:numLabel];
+    
+    //transparent btn for selection
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:self.bounds];
+    [btn addTarget:self action:@selector(cellPressed:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:btn   ];
 }
 
 +(CGFloat)cellWidth{
     return 65;
+}
+
+-(void)selectCell{
+    if (!selectedBgView) {
+        selectedBgView = [[UIView alloc]initWithFrame:CGRectMake(10, 14, self.frame.size.width-25, 30)];
+        [selectedBgView setBackgroundColor:[UIColor redColor]];
+    }
+    [self insertSubview:selectedBgView atIndex:0];
+}
+
+-(void)unselectCell{
+    [selectedBgView removeFromSuperview];
+}
+
+-(void)cellPressed:(UIButton*)sender{
+    [self.linearCalendar setSelectedDate:self.cellDate];
 }
 
 @end

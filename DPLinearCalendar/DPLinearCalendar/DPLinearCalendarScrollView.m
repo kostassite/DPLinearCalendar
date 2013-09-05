@@ -74,10 +74,11 @@
         cellContainerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height/2);
         [self addSubview:cellContainerView];
 
-        [cellContainerView setUserInteractionEnabled:NO];
+        [cellContainerView setUserInteractionEnabled:YES];
         
         // hide horizontal scroll indicator so our recentering trick is not revealed
         [self setShowsHorizontalScrollIndicator:NO];
+        self.canCancelContentTouches=YES;
     }
     return self;
 }
@@ -135,6 +136,8 @@
         cell=[[DPLinearCalendarCell alloc] initWithFrame:CGRectMake(0, 0, [DPLinearCalendarCell cellWidth], self.frame.size.height)];
         cell.cellDate=date;
     }
+    
+    [cell setLinearCalendar:self];
     
     [cellContainerView addSubview:cell];
     return cell;
@@ -248,17 +251,28 @@
 
 -(void)setSelectedDate:(NSDate *)selectedDate{
     _selectedDate = selectedDate;
-    
-    CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
-    CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
-    CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
-    
-    for (DPLinearCalendarCell *cell in visibleCells) {
-        [cell removeFromSuperview];
+    if (self.wrapEnabled) {
+        CGRect visibleBounds = [self convertRect:[self bounds] toView:cellContainerView];
+        CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
+        CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
+        
+        for (DPLinearCalendarCell *cell in visibleCells) {
+            [cell removeFromSuperview];
+        }
+        [visibleCells removeAllObjects];
+        [self placeNewCellOnRight:minimumVisibleX ofDate:[selectedDate dateByAddingDays:-1]];
+        [self tileCellsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+    }else{
+        for (DPLinearCalendarCell *cell in visibleCells) {
+            if ([[cell.cellDate dateWithoutTime] isEqualToDate:[selectedDate dateWithoutTime]]) {
+                [cell selectCell];
+            }else{
+                [cell unselectCell];
+            }
+        }
+        
     }
-    [visibleCells removeAllObjects];
-    [self placeNewCellOnRight:minimumVisibleX ofDate:[selectedDate dateByAddingDays:-1]];
-    [self tileCellsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+
     
     if (self.linearDelegate && [self.linearDelegate respondsToSelector:@selector(linearCalendarSelectedDate:)]) {
         [self.linearDelegate linearCalendarSelectedDate:selectedDate];
