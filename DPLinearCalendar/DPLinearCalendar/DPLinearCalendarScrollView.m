@@ -100,12 +100,39 @@
     if (distanceFromCenter > (contentWidth / 4.0)) {
         self.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
         
-        // move content by the same amount so it appears to stay still
-        
-        for (DPLinearCalendarCell *cell in visibleCells) {
-            CGPoint center = [cellContainerView convertPoint:cell.center fromView:self];
-            center.x = (centerOffsetX - currentOffset.x);
-            cell.center = [self convertPoint:center fromView:cellContainerView];
+        if (currentOffset.x - centerOffsetX>0) {
+            
+            DPLinearCalendarCell *first ;
+            if ([visibleCells count]>0) {
+                first = [visibleCells objectAtIndex:0];
+            }
+            
+            for (DPLinearCalendarCell *c in visibleCells) {
+                [c removeFromSuperview];
+            }
+            
+            [visibleCells removeAllObjects];
+            if (first) {
+                
+                first.center = CGPointMake(centerOffsetX, 0);
+                [visibleCells addObject:first];
+            }
+        }else{
+            DPLinearCalendarCell *last ;
+            if ([visibleCells count]>0) {
+                last = [visibleCells lastObject];
+            }
+
+            for (DPLinearCalendarCell *c in visibleCells) {
+                [c removeFromSuperview];
+            }
+            
+            [visibleCells removeAllObjects];
+            if (last) {
+                
+                last.center = CGPointMake(centerOffsetX+320, last.center.y);
+                [visibleCells addObject:last];
+            }
         }
     }
 }
